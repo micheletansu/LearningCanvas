@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"></head>
+<body>
+    <canvas id="c" width="500" height="500"></canvas>
+
+    <script>
+        var c = document.querySelector("#c");
+        var ctx = c.getContext("2d");
+
+        ctx.strokeStyle = "blue";
+        ctx.beginPath();
+        ctx.moveTo(75,75);
+        ctx.lineTo(125,75);
+        ctx.lineTo("125","125");
+        ctx.lineTo("75","75");
+        ctx.fill();
+        //ctx.stroke();
+
+        ctx.strokeRect(50, 50, 100, 100);
+
+        ctx.font = "36pt Impact";
+        ctx.textAlign = "center";
+        ctx.fillStyle = "white";
+        ctx.fillText("Hello Udacity!", c.width/2, 40);
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = "3";
+        ctx.strokeText("Hello Udacity!", c.width/2, 40);
+
+        /*
+        // imposta il colore della linea
+        context.strokeStyle = "#FF0000";
+        // disegna un rettangolo cavo
+        ctx.strokeRect(10, 10, 20, 20);
+        // imposta il colore del riempimento
+        context.fillStyle = "#00FF00";
+        // disegna un rettangolo pieno
+        context.fillRect( 40, 10, 20, 20);
+        // cambia il colore della linea
+        context.strokeStyle = "#000000";
+        // disegna un rettangolo cavo
+        context.strokeRect(70, 10, 20, 20);
+        */
+    </script>
+</body>
+</html>
