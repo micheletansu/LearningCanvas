@@ -2,7 +2,8 @@
 <html>
 <head><meta charset="utf-8"></head>
 <body>
-    <canvas id="c" width="500" height="500"></canvas>
+    <canvas id="c" width="500" height="250">Your browser does not support the HTML5 canvas tag.</canvas>
+    <canvas id="canv" width="250" height="250">Your browser does not support the HTML5 canvas tag.</canvas>
 
     <script>
         var c = document.querySelector("#c");
@@ -42,6 +43,25 @@
         // disegna un rettangolo cavo
         context.strokeRect(70, 10, 20, 20);
         */
+
+        var canv = document.querySelector("#canv");
+        var cont = canv.getContext("2d");
+        //cont.getImageData();
+
+        var imgData=cont.getImageData(0,0,250,250);
+
+        function createGreen(imgData) {
+            var imageLength = imgData.data.length/4;
+            for (var i=0;i<imageLength;i++)
+            {
+                if (i%10===0){
+                      imgData.data[i*4+1]=255;
+                      imgData.data[i*4+3]=255;
+                }
+            }
+            cont.putImageData(imgData,0,0);
+        }
+        createGreen(imgData);
     </script>
 </body>
 </html>
