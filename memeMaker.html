@@ -42,15 +42,35 @@
       
       redrawMeme(window.imageSrc, window.topLineText, window.bottomLineText);
     }
+
+  function toGreyscale(imgData) {
+      var imageLength = imgData.data.length/4;
+      for (var i=0;i<imageLength;i++)
+      {
+        var r = imgData.data[i * 4 + 0];
+        var g = imgData.data[i * 4 + 1];
+        var b = imgData.data[i * 4 + 2];
+
+        var gray = Math.round(0.299*r + 0.587*g + 0.114*b);
+        imgData.data[i * 4 + 0] = gray;
+        imgData.data[i * 4 + 1] = gray;
+        imgData.data[i * 4 + 2] = gray;
+      }
+      return imgData;
+    }
     
     function redrawMeme(image, topLine, bottomLine) {
         // Get Canvas2DContext
         var canvas = document.querySelector('canvas');
         var ctx = canvas.getContext("2d");
 
+        
         if (image!=null)
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
+        image = ctx.getImageData(0,100,500,500);
+        image = toGreyscale(image);
+        ctx.putImageData(image,0,100);
 
         ctx.font = "50pt Impact";
         ctx.textAlign = "center";
